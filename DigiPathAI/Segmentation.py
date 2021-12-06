@@ -292,9 +292,6 @@ def getSegmentation(img_path,
             session = tf.Session(config=core_config)
             tf.keras.backend.set_session(session)
             
-        from tensorflow.keras import backend as K
-
-        K.set_session(session)
 
         print ("---------------------- {}, {} ---------------".format(model, quick))
         if not quick:
