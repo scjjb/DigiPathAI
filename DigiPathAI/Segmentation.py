@@ -56,7 +56,7 @@ home = expanduser("~")
 # Random Seeds
 np.random.seed(0)
 random.seed(0)
-if(int(tf.__version__[0])>1):
+if (int(tf.__version__[0])>1):
     tf.random.set_seed(0)
 else:
     tf.set_random_seed(0)
@@ -281,7 +281,10 @@ def getSegmentation(img_path,
 
 
         if status is not None: status['status'] = "Loading Trained weights"
-        core_config = tf.ConfigProto()
+        if (int(tf.__version__[0])>1):
+            core_config = tf.compat.v1.ConfigProto()
+        else:
+            core_config = tf.ConfigProto()
         core_config.gpu_options.allow_growth = True 
         session =tf.Session(config=core_config) 
         K.set_session(session)
