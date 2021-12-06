@@ -47,7 +47,11 @@ from models.deeplabv3p_original import Deeplabv3
 # Random Seeds
 np.random.seed(0)
 random.seed(0)
-tf.set_random_seed(0)
+if(int(tf.__version__[0])>1):
+    tf.random.set_seed(0)
+else:
+    tf.set_random_seed(0)
+
 import gc
 import pandas as pd
 
