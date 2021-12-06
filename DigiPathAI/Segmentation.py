@@ -286,7 +286,10 @@ def getSegmentation(img_path,
         else:
             core_config = tf.ConfigProto()
         core_config.gpu_options.allow_growth = True 
-        session =tf.Session(config=core_config) 
+        if (int(tf.__version__[0])>1):
+            session =tf.compat.v1.Session(config=core_config) 
+        else:
+            session =tf.Session(config=core_config) 
         K.set_session(session)
 
         print ("---------------------- {}, {} ---------------".format(model, quick))
