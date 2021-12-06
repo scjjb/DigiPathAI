@@ -28,7 +28,7 @@ setuptools.setup(
              'matplotlib',
              'scikit-learn',
              'scikit-image',
-             'tensorflow-gpu>=1.14,<2',
+             'tensorflow-gpu>=1.14',
              'pydensecrf',
          'tifffile',
              'pandas',
