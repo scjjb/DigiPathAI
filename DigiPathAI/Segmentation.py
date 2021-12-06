@@ -19,7 +19,6 @@ import matplotlib.pyplot as plt
 import numpy as np 
 import tensorflow as tf
 import pandas as pd
-from tensorflow.keras import backend as K
 from tensorflow.keras.models import Model
 from tensorflow.keras.layers import Input, BatchNormalization, Conv2D, MaxPooling2D,AveragePooling2D, ZeroPadding2D, concatenate,Concatenate, UpSampling2D, Activation, Lambda
 from tensorflow.keras.losses import categorical_crossentropy
@@ -287,9 +286,14 @@ def getSegmentation(img_path,
             core_config = tf.ConfigProto()
         core_config.gpu_options.allow_growth = True 
         if (int(tf.__version__[0])>1):
-            session =tf.compat.v1.Session(config=core_config) 
+            session = tf.compat.v1.Session(config=core_config)
+            tf.compat.v1.keras.backend.set_session(session)
         else:
-            session =tf.Session(config=core_config) 
+            session = tf.Session(config=core_config)
+            tf.keras.backend.set_session(session)
+            
+        from tensorflow.keras import backend as K
+
         K.set_session(session)
 
         print ("---------------------- {}, {} ---------------".format(model, quick))
